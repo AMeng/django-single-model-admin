@@ -6,11 +6,15 @@ This is useful for things like site-wide settings
 
 Usage:
 ------
-Works exactly the same as Django's ModelAdmin ::
-    from django-single-model-admin import SingleModelAdmin
+
+Works exactly the same as Django's ModelAdmin
+
+
+    from singlemodeladmin import SingleModelAdmin
 
     MyModelAdmin(SingleModelAdmin):
         list_display = [ ... ]
+
         search_fields = [ ... ]
 
 The default changelist view will redirect users to the single object's edit page.
