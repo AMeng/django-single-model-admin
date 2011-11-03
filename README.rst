@@ -6,9 +6,7 @@ This is useful for things like site-wide settings
 
 Usage:
 ------
-Works exactly the same as Django's ModelAdmin
-
-::
+Works exactly the same as Django's ModelAdmin ::
     from django-single-model-admin import SingleModelAdmin
 
     MyModelAdmin(SingleModelAdmin):
