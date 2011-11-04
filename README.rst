@@ -17,4 +17,9 @@ Works exactly the same as Django's ModelAdmin
 
         search_fields = [ ... ]
 
-The default changelist view will redirect users to the single object's edit page.
+If there is only one object, the changelist will redirect to that object.
+If there are no objects, the changelist will redirect to the add form.
+If there are multiple objects, the changelist is displayed with a warning.
+
+Attempting to add a new record when there is already one will result in a
+warning and a redirect away from the add form.
