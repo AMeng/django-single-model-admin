@@ -13,7 +13,7 @@ from singlemodeladmin import SingleModelAdmin
 MyModelAdmin(SingleModelAdmin):
     list_display = [ ... ]
     search_fields = [ ... ]
-
+```
 
 Behavior:
 ---
