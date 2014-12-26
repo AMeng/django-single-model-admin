@@ -22,6 +22,12 @@ class MyModelAdmin(SingleModelAdmin):
     search_fields = [ ... ]
 ```
 
+Installation:
+---
+```
+pip install singlemodeladmin
+```
+
 Behavior:
 ---
 
