@@ -3,6 +3,7 @@ from django.core.urlresolvers import reverse
 from django.contrib import admin, messages
 from django.shortcuts import redirect
 
+
 class SingleModelAdmin(admin.ModelAdmin):
 
     """
@@ -17,8 +18,8 @@ class SingleModelAdmin(admin.ModelAdmin):
     warning and a redirect away from the add form.
     """
 
-    def changelist_view(self,request,extra_context=None):
-        info = "%s_%s" % (self.model._meta.app_label,self.model._meta.module_name)
+    def changelist_view(self, request, extra_context=None):
+        info = "%s_%s" % (self.model._meta.app_label, self.model._meta.module_name)
 
         try:
             instance = self.model.objects.get()
@@ -27,15 +28,15 @@ class SingleModelAdmin(admin.ModelAdmin):
             return redirect(reverse("admin:%s_add" % info))
 
         except MultipleObjectsReturned:
-            messages.warning(request,"There are multiple instances of %s. There should only be one." % self.model._meta.module_name,fail_silently=True)
-            return super(SingleModelAdmin,self).changelist_view(request,extra_context=extra_context)
+            messages.warning(request, "There are multiple instances of %s. There should only be one." % self.model._meta.module_name, fail_silently=True)
+            return super(SingleModelAdmin, self).changelist_view(request, extra_context=extra_context)
 
         else:
-            return redirect(reverse("admin:%s_change" % info,args=[instance.pk]))
+            return redirect(reverse("admin:%s_change" % info, args=[instance.pk]))
 
-    def add_view(self,request,form_url='',extra_context=None):
+    def add_view(self, request, form_url='', extra_context=None):
         if self.model.objects.count():
-            messages.warning(request,"Do not add additional instances of %s. Only one is needed." % self.model._meta.module_name,fail_silently=True)
-            return redirect(reverse("admin:%s_%s_changelist" % (self.model._meta.app_label,self.model._meta.module_name)))
+            messages.warning(request, "Do not add additional instances of %s. Only one is needed." % self.model._meta.module_name, fail_silently=True)
+            return redirect(reverse("admin:%s_%s_changelist" % (self.model._meta.app_label, self.model._meta.module_name)))
 
-        return super(SingleModelAdmin,self).add_view(request,form_url=form_url,extra_context=extra_context)
+        return super(SingleModelAdmin, self).add_view(request, form_url=form_url, extra_context=extra_context)
