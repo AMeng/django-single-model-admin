@@ -10,7 +10,7 @@ Subclass `SingleModelAdmin` instead of Django's `ModelAdmin`
 ```python
 from singlemodeladmin import SingleModelAdmin
 
-MyModelAdmin(SingleModelAdmin):
+class MyModelAdmin(SingleModelAdmin):
     list_display = [ ... ]
     search_fields = [ ... ]
 ```
