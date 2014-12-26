@@ -1,8 +1,8 @@
 from distutils.core import setup
 
 setup(
-  name = 'django-single-model-admin',
-  packages = ['django-single-model-admin'],
+  name = 'singlemodeladmin',
+  packages = ['singlemodeladmin'],
   version = '0.1',
   description = 'ModelAdmin for models that are meant to have one record',
   author = 'Alexander Meng',
