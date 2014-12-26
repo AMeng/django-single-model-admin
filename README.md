@@ -1,9 +1,11 @@
 DJANGO SINGLE MODEL ADMIN
 ===
 
+[![PyPI Version](https://img.shields.io/pypi/v/singlemodeladmin.svg)][pypi]
 [![Build Status](http://img.shields.io/travis/AMeng/django-single-model-admin.svg)][travis]
 
 [travis]: http://travis-ci.org/AMeng/django-single-model-admin
+[pypi]: https://pypi.python.org/pypi/singlemodeladmin
 
 A subclass of Django's ModelAdmin for use with models that are only meant to have one record. This is useful for things like site-wide settings
 
