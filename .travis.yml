@@ -3,8 +3,16 @@ language: python
 python:
   - "2.7"
 
+env:
+  - DJANGO_VERSION=1.4.19
+  - DJANGO_VERSION=1.5.12
+  - DJANGO_VERSION=1.6.10
+  - DJANGO_VERSION=1.7.5
+
 install:
-  - make install
+  - pip install -q Django==$DJANGO_VERSION
+  - pip install -r requirements.txt
+  - pip install .
 
 script:
   - make lint
