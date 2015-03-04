@@ -40,3 +40,15 @@ class SingleModelAdmin(admin.ModelAdmin):
             return redirect(reverse("admin:%s_%s_changelist" % (self.model._meta.app_label, self.model._meta.module_name)))
 
         return super(SingleModelAdmin, self).add_view(request, form_url=form_url, extra_context=extra_context)
+
+    """
+        Returns false if one or more objects found, true otherwise
+    """
+    def has_add_permission(self, request):
+        try:
+            self.model.objects.get()
+        except self.model.DoesNotExist:
+            return True
+        except MultipleObjectsReturned:
+            pass
+        return False
