@@ -21,8 +21,7 @@ class NoObjectsTestCase(AbstractTestCase):
 
     def test_changelist_redirects_to_add(self):
         response = self.client.get(reverse('admin:app_testmodel_changelist'))
-        self.assertEqual(response.status_code, 302)
-        self.assertEqual(response.url, 'http://testserver/admin/app/testmodel/add/')
+        self.assertRedirects(response, 'http://testserver/admin/app/testmodel/add/')
 
     def test_renders_add_button(self):
         response = self.client.get(reverse('admin:app_list', args=['app']))
@@ -36,14 +35,12 @@ class SingleObjectTestCase(AbstractTestCase):
         TestModel.objects.create(field='value')
 
     def test_cannot_add_new_model(self):
-        response = self.client.get(reverse('admin:app_testmodel_add'))
-        self.assertEqual(response.status_code, 302)
-        self.assertEqual(response.url, 'http://testserver/admin/app/testmodel/')
+        response = self.client.get(reverse('admin:app_testmodel_add'), follow=True)
+        self.assertRedirects(response, 'http://testserver/admin/app/testmodel/1/')
 
     def test_cannot_see_changelist(self):
         response = self.client.get(reverse('admin:app_testmodel_changelist'))
-        self.assertEqual(response.status_code, 302)
-        self.assertEqual(response.url, 'http://testserver/admin/app/testmodel/1/')
+        self.assertRedirects(response, 'http://testserver/admin/app/testmodel/1/')
 
     def test_does_not_render_add_button(self):
         response = self.client.get(reverse('admin:app_list', args=['app']))
@@ -60,8 +57,7 @@ class MultipleObjectsTestCase(AbstractTestCase):
 
     def test_cannot_add_new_model(self):
         response = self.client.get(reverse('admin:app_testmodel_add'))
-        self.assertEqual(response.status_code, 302)
-        self.assertEqual(response.url, 'http://testserver/admin/app/testmodel/')
+        self.assertRedirects(response, 'http://testserver/admin/app/testmodel/')
 
     def test_can_see_changelist(self):
         response = self.client.get(reverse('admin:app_testmodel_changelist'))
