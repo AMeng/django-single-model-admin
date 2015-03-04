@@ -47,7 +47,7 @@ class SingleModelAdmin(admin.ModelAdmin):
         try:
             self.model.objects.get()
         except self.model.DoesNotExist:
-            return True
+            return super(SingleModelAdmin, self).has_add_permission(request)
         except MultipleObjectsReturned:
             pass
         return False
