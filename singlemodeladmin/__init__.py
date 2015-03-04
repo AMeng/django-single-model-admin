@@ -19,31 +19,30 @@ class SingleModelAdmin(admin.ModelAdmin):
     """
 
     def changelist_view(self, request, extra_context=None):
-        info = "%s_%s" % (self.model._meta.app_label, self.model._meta.module_name)
+        info = '{0}_{1}'.format(self.model._meta.app_label, self.model._meta.module_name)
 
         try:
             instance = self.model.objects.get()
 
         except self.model.DoesNotExist:
-            return redirect(reverse("admin:%s_add" % info))
+            return redirect(reverse('admin:{0}_add'.format(info)))
 
         except MultipleObjectsReturned:
-            messages.warning(request, "There are multiple instances of %s. There should only be one." % self.model._meta.module_name, fail_silently=True)
+            warning = 'There are multiple instances of {0}. There should only be one.'.format(self.model._meta.module_name)
+            messages.warning(request, warning, fail_silently=True)
             return super(SingleModelAdmin, self).changelist_view(request, extra_context=extra_context)
 
         else:
-            return redirect(reverse("admin:%s_change" % info, args=[instance.pk]))
+            return redirect(reverse('admin:{0}_change'.format(info), args=[instance.pk]))
 
     def add_view(self, request, form_url='', extra_context=None):
         if self.model.objects.count():
-            messages.warning(request, "Do not add additional instances of %s. Only one is needed." % self.model._meta.module_name, fail_silently=True)
-            return redirect(reverse("admin:%s_%s_changelist" % (self.model._meta.app_label, self.model._meta.module_name)))
+            warning = 'Do not add additional instances of {0}. Only one is needed.'.format(self.model._meta.module_name)
+            messages.warning(request, warning, fail_silently=True)
+            return redirect(reverse('admin:{0}_{1}_changelist'.format(self.model._meta.app_label, self.model._meta.module_name)))
 
         return super(SingleModelAdmin, self).add_view(request, form_url=form_url, extra_context=extra_context)
 
-    """
-        Returns false if one or more objects found, true otherwise
-    """
     def has_add_permission(self, request):
         try:
             self.model.objects.get()
