@@ -3,7 +3,7 @@ from distutils.core import setup
 setup(
     name='singlemodeladmin',
     packages=['singlemodeladmin'],
-    version='0.1',
+    version='0.2',
     description='ModelAdmin for models that are meant to have one record',
     author='Alexander Meng',
     author_email='alexbmeng@gmail.com',
