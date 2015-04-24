@@ -19,7 +19,7 @@ class SingleModelAdmin(admin.ModelAdmin):
     """
 
     def changelist_view(self, request, extra_context=None):
-        info = '{0}_{1}'.format(self.model._meta.app_label, self.model._meta.module_name)
+        info = '{0}_{1}'.format(self.model._meta.app_label, self.model._meta.model_name)
 
         try:
             instance = self.model.objects.get()
@@ -28,7 +28,7 @@ class SingleModelAdmin(admin.ModelAdmin):
             return redirect(reverse('admin:{0}_add'.format(info)))
 
         except MultipleObjectsReturned:
-            warning = 'There are multiple instances of {0}. There should only be one.'.format(self.model._meta.module_name)
+            warning = 'There are multiple instances of {0}. There should only be one.'.format(self.model._meta.model_name)
             messages.warning(request, warning, fail_silently=True)
             return super(SingleModelAdmin, self).changelist_view(request, extra_context=extra_context)
 
@@ -37,9 +37,9 @@ class SingleModelAdmin(admin.ModelAdmin):
 
     def add_view(self, request, form_url='', extra_context=None):
         if self.model.objects.count():
-            warning = 'Do not add additional instances of {0}. Only one is needed.'.format(self.model._meta.module_name)
+            warning = 'Do not add additional instances of {0}. Only one is needed.'.format(self.model._meta.model_name)
             messages.warning(request, warning, fail_silently=True)
-            return redirect(reverse('admin:{0}_{1}_changelist'.format(self.model._meta.app_label, self.model._meta.module_name)))
+            return redirect(reverse('admin:{0}_{1}_changelist'.format(self.model._meta.app_label, self.model._meta.model_name)))
 
         return super(SingleModelAdmin, self).add_view(request, form_url=form_url, extra_context=extra_context)
 
