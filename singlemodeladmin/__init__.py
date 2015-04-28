@@ -5,7 +5,7 @@ from django.shortcuts import redirect
 from django import get_version
 from distutils.version import StrictVersion
 
-DJANGO_GT_16 = (StrictVersion(django.get_version()) >= StrictVersion('1.6'))
+DJANGO_GT_16 = (StrictVersion(get_version()) >= StrictVersion('1.6'))
 
 
 class SingleModelAdmin(admin.ModelAdmin):
