@@ -7,7 +7,7 @@ DJANGO SINGLE MODEL ADMIN
 [travis]: http://travis-ci.org/AMeng/django-single-model-admin
 [pypi]: https://pypi.python.org/pypi/singlemodeladmin
 
-A subclass of Django's ModelAdmin for use with models that are only meant to have one record. This is useful for things like site-wide settings
+A subclass of Django's ModelAdmin for use with models that are only meant to have one record. This is useful for things like site-wide settings. Tested with Django >= 1.4 and Python 2.7.
 
 Usage:
 ---
@@ -35,3 +35,4 @@ Behavior:
 - If there are no objects, the changelist will redirect to the add form.
 - If there are multiple objects, the changelist is displayed with a warning
 - Attempting to add a new record when there is already one will result in a warning and a redirect away from the add form.
+
