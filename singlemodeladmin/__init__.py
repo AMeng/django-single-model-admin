@@ -2,6 +2,10 @@ from django.core.exceptions import MultipleObjectsReturned
 from django.core.urlresolvers import reverse
 from django.contrib import admin, messages
 from django.shortcuts import redirect
+from django import get_version
+from distutils.version import StrictVersion
+
+DJANGO_GT_16 = (StrictVersion(get_version()) >= StrictVersion('1.6'))
 
 
 class SingleModelAdmin(admin.ModelAdmin):
@@ -18,8 +22,14 @@ class SingleModelAdmin(admin.ModelAdmin):
     warning and a redirect away from the add form.
     """
 
+    def _get_model_name(self, model):
+        if DJANGO_GT_16:
+            return getattr(model._meta, 'model_name')
+        else:
+            return getattr(model._meta, 'module_name')
+
     def changelist_view(self, request, extra_context=None):
-        info = '{0}_{1}'.format(self.model._meta.app_label, self.model._meta.module_name)
+        info = '{0}_{1}'.format(self.model._meta.app_label, self._get_model_name(self.model))
 
         try:
             instance = self.model.objects.get()
@@ -28,7 +38,7 @@ class SingleModelAdmin(admin.ModelAdmin):
             return redirect(reverse('admin:{0}_add'.format(info)))
 
         except MultipleObjectsReturned:
-            warning = 'There are multiple instances of {0}. There should only be one.'.format(self.model._meta.module_name)
+            warning = 'There are multiple instances of {0}. There should only be one.'.format(self._get_model_name(self.model))
             messages.warning(request, warning, fail_silently=True)
             return super(SingleModelAdmin, self).changelist_view(request, extra_context=extra_context)
 
@@ -37,9 +47,9 @@ class SingleModelAdmin(admin.ModelAdmin):
 
     def add_view(self, request, form_url='', extra_context=None):
         if self.model.objects.count():
-            warning = 'Do not add additional instances of {0}. Only one is needed.'.format(self.model._meta.module_name)
+            warning = 'Do not add additional instances of {0}. Only one is needed.'.format(self._get_model_name(self.model))
             messages.warning(request, warning, fail_silently=True)
-            return redirect(reverse('admin:{0}_{1}_changelist'.format(self.model._meta.app_label, self.model._meta.module_name)))
+            return redirect(reverse('admin:{0}_{1}_changelist'.format(self.model._meta.app_label, self._get_model_name(self.model))))
 
         return super(SingleModelAdmin, self).add_view(request, form_url=form_url, extra_context=extra_context)
 
