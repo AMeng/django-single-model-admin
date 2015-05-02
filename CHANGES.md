@@ -1,6 +1,11 @@
 Changelog
 =========
 
+Version 0.4
+-----------
+
+ * Ensure support for Python 2.6, 2.7, 3.2, and 3.3
+
 Version 0.3
 -----------
 
