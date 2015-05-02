@@ -14,7 +14,7 @@ class AbstractTestCase(TestCase):
 
     def assertMessage(self, response, message):
         messages = [m.message for m in response.context['messages']]
-        error_text = 'Message "{}" not found. Messages: {}'.format(message, messages)
+        error_text = 'Message "{0}" not found. Messages: {1}'.format(message, messages)
         self.assertTrue(message in messages, error_text)
 
 
