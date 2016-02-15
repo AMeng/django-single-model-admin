@@ -32,7 +32,10 @@ class SingleModelAdmin(admin.ModelAdmin):
         info = '{0}_{1}'.format(self.model._meta.app_label, self._get_model_name(self.model))
 
         try:
-            instance = self.get_queryset(request).get()
+            if DJANGO_GT_16:
+                instance = self.get_queryset(request).get()
+            else:
+                instance = self.queryset(request).get()
 
         except self.model.DoesNotExist:
             return redirect(reverse('admin:{0}_add'.format(info)))
