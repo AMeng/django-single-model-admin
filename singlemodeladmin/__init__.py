@@ -32,7 +32,10 @@ class SingleModelAdmin(admin.ModelAdmin):
         info = '{0}_{1}'.format(self.model._meta.app_label, self._get_model_name(self.model))
 
         try:
-            instance = self.model.objects.get()
+            if DJANGO_GT_16:
+                instance = self.get_queryset(request).get()
+            else:
+                instance = self.queryset(request).get()
 
         except self.model.DoesNotExist:
             return redirect(reverse('admin:{0}_add'.format(info)))
@@ -46,7 +49,13 @@ class SingleModelAdmin(admin.ModelAdmin):
             return redirect(reverse('admin:{0}_change'.format(info), args=[instance.pk]))
 
     def add_view(self, request, form_url='', extra_context=None):
-        if self.model.objects.count():
+
+        if DJANGO_GT_16:
+            count = self.get_queryset(request).count()
+        else:
+            count = self.queryset(request).count()
+
+        if count:
             warning = 'Do not add additional instances of {0}. Only one is needed.'.format(self._get_model_name(self.model))
             messages.warning(request, warning, fail_silently=True)
             return redirect(reverse('admin:{0}_{1}_changelist'.format(self.model._meta.app_label, self._get_model_name(self.model))))
@@ -55,7 +64,11 @@ class SingleModelAdmin(admin.ModelAdmin):
 
     def has_add_permission(self, request):
         try:
-            self.model.objects.get()
+            if DJANGO_GT_16:
+                self.get_queryset(request).get()
+            else:
+                self.queryset(request).get()
+
         except self.model.DoesNotExist:
             return super(SingleModelAdmin, self).has_add_permission(request)
         except MultipleObjectsReturned:
