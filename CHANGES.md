@@ -1,6 +1,12 @@
 Changelog
 =========
 
+Version 0.5
+-----------
+
+ * Add support for Python 3.4 and 3.5.
+ * Add support for Django 1.9
+
 Version 0.4
 -----------
 
@@ -9,12 +15,12 @@ Version 0.4
 Version 0.3
 -----------
 
- * Add support for Django >= 1.8.
+ * Add support for Django 1.8.
 
 Version 0.2
 -----------
 
- * Add support for DJango >= 1.6.
+ * Add support for DJango 1.6.
  * Hide the "Add" button in the UI if a model exists.
 
 Version 0.1
