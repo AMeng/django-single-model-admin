@@ -33,7 +33,7 @@ from my_app.models import MyModel
 class MyModelAdmin(SingleModelAdmin):
     list_display = ['my_field']
 
-admin.site.register(MyModel, SingleModelAdmin)
+admin.site.register(MyModel, MyModelAdmin)
 ```
 
 Installation:
