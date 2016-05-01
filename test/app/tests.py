@@ -26,7 +26,7 @@ class NoObjectsTestCase(AbstractTestCase):
 
     def test_changelist_redirects_to_add(self):
         response = self.client.get(reverse('admin:app_testmodel_changelist'), follow=True)
-        self.assertRedirects(response, 'http://testserver/admin/app/testmodel/add/')
+        self.assertRedirects(response, reverse('admin:app_testmodel_add'))
 
     def test_renders_add_button(self):
         response = self.client.get(reverse('admin:app_list', args=['app']), follow=True)
@@ -41,12 +41,12 @@ class SingleObjectTestCase(AbstractTestCase):
 
     def test_cannot_add_new_model(self):
         response = self.client.get(reverse('admin:app_testmodel_add'), follow=True)
-        self.assertRedirects(response, 'http://testserver/admin/app/testmodel/1/')
+        self.assertRedirects(response, reverse('admin:app_testmodel_change', args=[1]))
         self.assertMessage(response, 'Do not add additional instances of testmodel. Only one is needed.')
 
     def test_cannot_see_changelist(self):
         response = self.client.get(reverse('admin:app_testmodel_changelist'), follow=True)
-        self.assertRedirects(response, 'http://testserver/admin/app/testmodel/1/')
+        self.assertRedirects(response, reverse('admin:app_testmodel_change', args=[1]))
 
     def test_does_not_render_add_button(self):
         response = self.client.get(reverse('admin:app_list', args=['app']), follow=True)
@@ -63,7 +63,7 @@ class MultipleObjectsTestCase(AbstractTestCase):
 
     def test_cannot_add_new_model(self):
         response = self.client.get(reverse('admin:app_testmodel_add'), follow=True)
-        self.assertRedirects(response, 'http://testserver/admin/app/testmodel/')
+        self.assertRedirects(response, reverse('admin:app_testmodel_changelist'))
         self.assertMessage(response, 'Do not add additional instances of testmodel. Only one is needed.')
 
     def test_can_see_changelist(self):
