@@ -1,2 +1,2 @@
-Django
-flake8
+Django>=1.4
+flake8<=2.6.2  # Last version with Python 2.6 support.

@@ -7,7 +7,6 @@ from app.models import TestModel
 
 class AbstractTestCase(TestCase):
     def setUp(self):
-        TestModel.objects.all().delete()
         User.objects.create_superuser('user', 'email@test.com', 'password')
         self.client = Client()
         self.client.login(username='user', password='password')
