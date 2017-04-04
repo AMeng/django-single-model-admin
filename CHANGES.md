@@ -1,6 +1,12 @@
 Changelog
 =========
 
+Version 0.7
+-----------
+
+ * Add support for Django 1.11.
+ * Add support for Python 3.6.
+
 Version 0.6
 -----------
 
