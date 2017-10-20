@@ -1,7 +1,10 @@
 from django.contrib import admin, messages
 from django.core.exceptions import MultipleObjectsReturned
-from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
+try:
+    from django.core.urlresolvers import reverse
+except ImportError:
+    from django.urls import reverse
 
 
 class SingleModelAdmin(admin.ModelAdmin):
