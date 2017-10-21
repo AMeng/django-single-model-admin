@@ -1,6 +1,9 @@
 from django.contrib.auth.models import User
-from django.core.urlresolvers import reverse
 from django.test import Client, TestCase
+try:
+    from django.core.urlresolvers import reverse
+except ImportError:
+    from django.urls import reverse
 
 from app.models import TestModel
 

@@ -23,6 +23,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
+MIDDLEWARE = MIDDLEWARE_CLASSES  # Renamed variable in Django 1.10
+
 ROOT_URLCONF = 'project.urls'
 WSGI_APPLICATION = 'project.wsgi.application'
 
