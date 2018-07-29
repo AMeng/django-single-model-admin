@@ -11,5 +11,15 @@ setup(
     keywords=['django', 'model', 'admin'],
     install_requires=[
         'Django>=1.4'
+    ],
+    classifiers=[
+        "Framework :: Django",
+        "Intended Audience :: Developers",
+        "License :: OSI Approved :: MIT License",
+        "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python :: 3.5",
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
+        "Topic :: Utilities"
     ]
 )
