@@ -1,6 +1,11 @@
 Changelog
 =========
 
+Version 0.8
+-----------
+
+ * Add support for Django 2.0b1
+
 Version 0.7
 -----------
 
@@ -32,7 +37,7 @@ Version 0.3
 Version 0.2
 -----------
 
- * Add support for DJango 1.6.
+ * Add support for Django 1.6.
  * Hide the "Add" button in the UI if a model exists.
 
 Version 0.1
