@@ -1,6 +1,15 @@
 Changelog
 =========
 
+Version 0.9
+-----------
+
+ * Add classifiers
+ * Add support for Django 2.0
+ * Drop support for Django 2.0b1
+ * Add support for Python 3.7
+
+
 Version 0.8
 -----------
 
