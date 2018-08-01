@@ -1,5 +1,6 @@
 *.pyc
 *.sqlite3
+*.egg-info/
 dist/
 env/
 build/

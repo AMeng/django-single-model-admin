@@ -62,6 +62,7 @@ Supported Django Versions:
  * 1.10
  * 1.11
  * 2.0
+ * 2.1
 
 Supported Python Versions:
 --------------------------
