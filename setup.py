@@ -1,4 +1,4 @@
-import setuptools
+import setuptools  # noqa: F401
 from distutils.core import setup
 
 setup(
