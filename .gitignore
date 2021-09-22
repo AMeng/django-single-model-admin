@@ -4,5 +4,5 @@
 dist/
 env/
 build/
-
+__pycache__
 \.idea/
