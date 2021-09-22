@@ -25,7 +25,7 @@ matrix:
     - python: 2.7
       env: DJANGO_VERSION=1.10.8
     - python: 2.7
-      env: DJANGO_VERSION=1.11.15
+      env: DJANGO_VERSION=1.11.29
     # Python 3.3 is supported by Django >= 1.5 and Django < 1.9
     - python: 3.3
       env: DJANGO_VERSION=1.5.12
@@ -48,7 +48,7 @@ matrix:
       env: DJANGO_VERSION=1.9.13
     - python: 3.4
       env: DJANGO_VERSION=1.10.8
-    # Python 3.5 is supported by Django >= 1.8
+    # Python 3.5 is supported by Django >= 1.8 and Django < 3.0
     - python: 3.5
       env: DJANGO_VERSION=1.8.19
     - python: 3.5
@@ -56,29 +56,59 @@ matrix:
     - python: 3.5
       env: DJANGO_VERSION=1.10.8
     - python: 3.5
-      env: DJANGO_VERSION=1.11.15
+      env: DJANGO_VERSION=1.11.29
     - python: 3.5
-      env: DJANGO_VERSION=2.0.8
+      env: DJANGO_VERSION=2.0.13
     - python: 3.5
-      env: DJANGO_VERSION=2.1
+      env: DJANGO_VERSION=2.1.15
+    - python: 3.5
+      env: DJANGO_VERSION=2.2.24
     # Python 3.6 is supported by Django >= 1.11
     - python: 3.6
-      env: DJANGO_VERSION=1.11.15
+      env: DJANGO_VERSION=1.11.29
     - python: 3.6
-      env: DJANGO_VERSION=2.0.8
+      env: DJANGO_VERSION=2.0.13
     - python: 3.6
-      env: DJANGO_VERSION=2.1
+      env: DJANGO_VERSION=2.1.15
+    - python: 3.6
+      env: DJANGO_VERSION=2.2.24
+    - python: 3.6
+      env: DJANGO_VERSION=3.0.14
+    - python: 3.6
+      env: DJANGO_VERSION=3.1.13
+    - python: 3.6
+      env: DJANGO_VERSION=3.2.8
     # Python 3.7 is supported by Django >= 2.0
-    # The dist and sudo are needed to run 3.7
-    # on Travis until 3.7 is officially supported.
     - python: 3.7
-      env: DJANGO_VERSION=2.0.8
-      dist: xenial
-      sudo: true
+      env: DJANGO_VERSION=2.0.13
     - python: 3.7
-      env: DJANGO_VERSION=2.1
-      dist: xenial
-      sudo: true
+      env: DJANGO_VERSION=2.1.15
+    - python: 3.7
+      env: DJANGO_VERSION=2.2.24
+    - python: 3.7
+      env: DJANGO_VERSION=3.0.14
+    - python: 3.7
+      env: DJANGO_VERSION=3.1.13
+    - python: 3.7
+      env: DJANGO_VERSION=3.2.8
+    # Python 3.8 is supported by Django >= 2.2
+    - python: 3.8
+      env: DJANGO_VERSION=2.2.24
+    - python: 3.8
+      env: DJANGO_VERSION=3.0.14
+    - python: 3.8
+      env: DJANGO_VERSION=3.1.13
+    - python: 3.8
+      env: DJANGO_VERSION=3.2.8
+    # Python 3.8 is supported by Django >= 2.2
+    - python: 3.9
+      env: DJANGO_VERSION=2.2.24
+    - python: 3.9
+      env: DJANGO_VERSION=3.0.14
+    - python: 3.9
+      env: DJANGO_VERSION=3.1.13
+    - python: 3.9
+      env: DJANGO_VERSION=3.2.8
 
 install:
   - pip install --pre -q Django==$DJANGO_VERSION
